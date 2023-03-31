@@ -41,6 +41,17 @@ class App extends Component{
     }))
   }
 
+  componentDidUpdate () {
+    localStorage.setItem("contacts", JSON.stringify(this.state.contacts))
+  }
+
+  componentDidMount () {
+    const savedContacts = localStorage.getItem("contacts");
+    if(savedContacts) {
+      this.setState({ contacts: JSON.parse(savedContacts) })
+    }
+  }
+
   render(){
     const { contacts, filter } = this.state;
 
